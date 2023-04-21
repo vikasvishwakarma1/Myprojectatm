@@ -1,0 +1,70 @@
+package MyPackage;
+
+public class Main {
+	public static void main(String[] args) {
+        User user = new User(123456789, 1234, "John Doe");
+        ATM atm = new ATM(user, 5000);
+        atm.authenticate(123456789,1234);
+        atm.deposit(1000);
+        atm.checkBalance();
+        atm.withdraw(500);
+        // implement user input and display interface
+    }
+
+}
+public class User {private int accountNumber;
+private int pin;
+private String name;
+
+public User(int accountNumber, int pin, String name) {
+    this.accountNumber = accountNumber;
+    this.pin = pin;
+    this.name = name;
+}
+
+public int getAccountNumber() {
+    return accountNumber;
+}
+
+public int getPin() {
+    return pin;
+}
+
+public String getName() {
+    return name;
+}
+
+}
+public class ATM {private User user;
+private double balance;
+
+public ATM(User user, double balance) {
+    this.user = user;
+    this.balance = balance;
+}
+
+public void deposit(double amount) {
+    balance += amount;
+    System.out.println("Amount deposited: " + amount);
+    System.out.println("Current balance: " + balance);
+}
+
+public void withdraw(double amount) {
+    if (balance < amount) {
+        System.out.println("Insufficient balance");
+        return;
+    }
+    balance -= amount;
+    System.out.println("Amount withdrawn: " + amount);
+    System.out.println("Current balance: " + balance);
+}
+
+public void checkBalance() {
+    System.out.println("Current balance: " + balance);
+}
+
+public boolean authenticate(int accountNumber, int pin) {
+    return user.getAccountNumber() == accountNumber && user.getPin() == pin;
+}
+
+}
